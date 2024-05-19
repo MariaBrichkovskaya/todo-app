@@ -1,0 +1,1 @@
+ALTER TABLE if exists users drop CONSTRAINT if exists "uni_users_username";
