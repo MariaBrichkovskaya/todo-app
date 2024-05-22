@@ -1,8 +1,8 @@
 package service
 
 import (
-	"firstGoProject/pkg/model"
-	"firstGoProject/pkg/repository"
+	"todo-app/pkg/model"
+	"todo-app/pkg/repository"
 )
 
 type Authorization interface {

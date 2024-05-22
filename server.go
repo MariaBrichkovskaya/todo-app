@@ -1,4 +1,4 @@
-package firstGoProject
+package todo_app
 
 import (
 	"context"

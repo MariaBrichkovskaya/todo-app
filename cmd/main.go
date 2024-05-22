@@ -1,15 +1,15 @@
 package main
 
 import (
-	"firstGoProject"
-	"firstGoProject/pkg/handler"
-	"firstGoProject/pkg/repository"
-	"firstGoProject/pkg/service"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"os"
+	"todo-app"
+	"todo-app/pkg/handler"
+	"todo-app/pkg/repository"
+	"todo-app/pkg/service"
 )
 
 func main() {
@@ -38,7 +38,7 @@ func main() {
 	services := service.NewTodoService(repos)
 	handlers := handler.NewHandler(services)
 
-	svr := new(firstGoProject.Server)
+	svr := new(todo_app.Server)
 	if err := svr.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
 		logrus.Fatal("error starting server:", err)
 	}

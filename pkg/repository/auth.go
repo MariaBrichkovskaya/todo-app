@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"firstGoProject/pkg/model"
 	"gorm.io/gorm"
+	"todo-app/pkg/model"
 )
 
 type AuthRepository struct {

@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"firstGoProject/pkg/model"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"todo-app/pkg/model"
 )
 
 func (h *Handler) signUp(c *gin.Context) {

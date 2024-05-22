@@ -1,10 +1,10 @@
 package repository
 
 import (
-	"firstGoProject/pkg/model"
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"todo-app/pkg/model"
 )
 
 const (
