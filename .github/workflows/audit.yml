@@ -25,10 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     needs: test
-    services:
-      docker:
-        image: docker:latest
-        options: '--privileged --network host --pid host --storage-driver containerd'
     steps:
       - name: Checkout main
         uses: actions/checkout@v2
