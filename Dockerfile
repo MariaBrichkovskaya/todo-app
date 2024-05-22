@@ -1,8 +1,8 @@
 FROM golang:alpine
 
 # Копируем исходный код
-COPY . .
-COPY .env .
+COPY ./ ./
+#COPY .env .
 # Загружаем зависимости
 RUN go mod download
 
