@@ -21,9 +21,9 @@ func main() {
 		logrus.Fatalf("Error load environment variables: %s", err.Error())
 	}
 	db, err := repository.NewPostgresDB(repository.Config{
-		Host:     viper.GetString("db.host"),
+		Host:     os.Getenv("DB_HOST"),
 		Port:     viper.GetString("db.port"),
-		Username: viper.GetString("db.username"),
+		Username: os.Getenv("DB_USERNAME"),
 		Password: os.Getenv("DB_PASSWORD"),
 		Database: viper.GetString("db.dbname"),
 		SSLMode:  viper.GetString("db.sslmode"),
@@ -45,7 +45,7 @@ func main() {
 }
 func initConfig() error {
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("/firstGoProject/configs/")
+	viper.AddConfigPath("configs/")
 	viper.SetConfigName("config")
 	return viper.ReadInConfig()
 }
