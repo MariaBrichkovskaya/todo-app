@@ -13,17 +13,39 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v2
 
-      - name: Set up Go 1.14
+      - name: Set up Go 1.17
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
 
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Test
         run: go test ./...
+
   build_and_push:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     needs: test
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+
+      - name: Set up Go 1.17
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - name: Build
+        run: go build -o todo-app ./cmd/main.go
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/todo-app:latest
