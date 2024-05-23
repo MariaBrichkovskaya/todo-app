@@ -12,7 +12,7 @@ type AuthRepository struct {
 func (a *AuthRepository) CreateUser(request model.User) (*model.User, error) {
 
 	user, _ := model.NewUser(
-		request.Name, request.Username, request.PasswordHash,
+		request.Name, request.Username, request.Password,
 	)
 	result := a.db.Create(&user)
 	if result.Error != nil {
@@ -22,6 +22,13 @@ func (a *AuthRepository) CreateUser(request model.User) (*model.User, error) {
 	return user, nil
 }
 
+func (a *AuthRepository) GetUser(username string, password string) model.User {
+
+	var user model.User
+	a.db.Where("username = ? AND password_hash = ?", username, password).Find(&user)
+
+	return user
+}
 func NewAuthRepository(db *gorm.DB) *AuthRepository {
 	return &AuthRepository{db: db}
 }
